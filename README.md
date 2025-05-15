@@ -108,7 +108,7 @@ L'application démarre sur http://localhost:8080.
 
 6. 📋 Récupérer les bénéficiaires d’une entreprise
 
-### GET **/entreprises/{id}/beneficiaires?type=all|persons|effects**
+### GET **/entreprises/{id}/beneficiaires?type=tous|personnes|effectifs**
 
     type=tous : tous les bénéficiaires (défaut)
 
