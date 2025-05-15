@@ -112,7 +112,7 @@ L'application démarre sur http://localhost:8080.
 
     type=tous : tous les bénéficiaires (défaut)
 
-    type=personness : seulement les personnes physiques
+    type=personnes : seulement les personnes physiques
 
     type=effectifs : personnes physiques > 25%
 
