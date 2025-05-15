@@ -32,6 +32,8 @@ public class EntrepriseService {
     public void ajouterBeneficiaire(UUID entrepriseId, UUID beneficiaireId, double pourcentage) {
         Entreprise entreprise = getEntreprise(entrepriseId);
 
+        checkBeneficiaire(beneficiaireId);
+
         double total = entreprise.getBeneficiaires().values().stream().mapToDouble(Double::doubleValue).sum();
         if (total + pourcentage > 100) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pourcentage total > 100%");
@@ -63,5 +65,13 @@ public class EntrepriseService {
                             .orElse("Entreprise " + e.getKey());
                     return nom + " : " + e.getValue() + "%";
                 }).toList();
+    }
+
+    private void checkBeneficiaire(UUID beneficiaireId) {
+        boolean isPersonne = store.getPersonnes().containsKey(beneficiaireId);
+        boolean isEntreprise = store.getEntreprises().containsKey(beneficiaireId);
+        if (!isPersonne && !isEntreprise) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 }
